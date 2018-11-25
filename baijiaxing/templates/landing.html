@@ -1,0 +1,140 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/static/assets/paper_img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>你的名字 君の名は</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <link href="/static/bootstrap3/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/assets/css/ct-paper.css" rel="stylesheet"/>
+    <link href="/static/assets/css/demo.css" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<nav class="navbar navbar-ct-transparent" role="navigation-demo" id="demo-navbar">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+{#        <div class="navbar-header">#}
+{#            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">#}
+{#                <span class="sr-only">Toggle navigation</span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#            </button>#}
+{#        </div>#}
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+            <a href="{% url 'app:index' %}" class="btn btn-danger">首页</a>
+          </li>
+                <li>
+                    <a href="{% url 'app:add_one_xingming' %}" class="btn btn-danger">你的名字</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-->
+</nav>
+
+
+<div class="wrapper">
+    <div class="demo-header demo-header-image" style="background-image: url('/static/assets/paper_img/add_name.jpeg');">
+        <div class="motto">
+        </div>
+    </div>
+    <div class="main">
+
+            <div class="section landing-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div align="center">
+                            {% if msg %}
+                                <a href="{% url 'app:get_one_info' the_xingming.id %}"><h2>{{ the_xingming.name }}已经存在,点击跳转</h2></a>
+                            {% endif %}
+                            </div>
+                            <h2 class="text-center">添加你的名字</h2>
+                            <form class="contact-form" action="" method="post">
+                                 {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>姓氏</label>
+                                        <input class="form-control" placeholder="请填写你的姓" name="xingshi">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>姓名</label>
+                                        <input class="form-control" placeholder="请填写你的名字" name="xingming">
+                                    </div>
+                                </div>
+                                  <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>五行</label>
+                                        <input class="form-control" placeholder="可不填" name="five_elements">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>三才</label>
+                                        <input class="form-control" placeholder="可不填" name="three_talents">
+                                    </div>
+                                </div>
+                                <br>
+                                <div align="center">
+                                <input type="submit" name="" value="查询" class="input_submit btn btn-success" >
+                                    </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    <!-- </div> -->
+    <div class="main">
+        <div class="section section-nude section-with-space">
+            <div class="container tim-container">
+                <div class="row sharing-area text-center">
+                    <h4><a href="http://www.fizzyi.com">欢迎来我的博客或者Github</a></h4>
+                    <a href="https://github.com/Fizzyi" class="btn">
+                        <i class="fa fa-github-square"></i>
+                        Github
+                    </a>
+                    <a href="http://www.fizzyi.com" class="btn">
+                        <i class="fa fa-rss-square"></i>
+                        Fizzyi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="/static/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/static/assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+<script src="/static/bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+
+<!--  Plugins -->
+<script src="/static/assets/js/ct-paper-checkbox.js"></script>
+<script src="/static/assets/js/ct-paper-radio.js"></script>
+<script src="/static/assets/js/bootstrap-select.js"></script>
+<script src="/static/assets/js/bootstrap-datepicker.js"></script>
+
+<script src="/static/assets/js/ct-paper.js"></script>
+</html>

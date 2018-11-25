@@ -1,0 +1,138 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/static/assets/paper_img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>你的名字</title>
+
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+    <link href="{% static 'bootstrap3/css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="/static/assets/css/ct-paper.css" rel="stylesheet"/>
+    <link href="/static/assets/css/demo.css" rel="stylesheet"/>
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+<nav class="navbar navbar-ct-danger" role="navigation-demo" id="demo-navbar">
+    <div class="container">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'app:index' %}" class="btn btn-danger">首页</a>
+                </li>
+                <li>
+                    <a href="{% url 'app:add_one_xingming' %}" class="btn btn-danger">你的名字</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-->
+</nav>
+
+<div class="wrapper">
+    <div class="demo-header">
+        <div class="motto">
+            <h1 class="title-uppercase">{{ xingshi.xingshi_zhongwen }}姓名字</h1>
+        </div>
+    </div>
+    <div class="main">
+        <div class="section section-nude">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        <div class="tim-container" style="min-height: 500px;">
+
+                            <!-- buttons row -->
+                            <div class="tim-row" id="buttons-row">
+
+                                <h2>君の名は</h2>
+                                <div id="buttons">
+                                    <br/>
+                                    <div class="row">
+                                        <h1>{{ msg }}</h1>
+                                        {% for i in page %}
+                                            <a href="{% url 'app:get_one_info' i.id %} ">
+                                                <button class="btn btn-fill btn-danger"
+                                                        style='font-size:30px;margin:8px'>{{ i.name }}</button>
+                                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tim-row" id="pagination-row" align="center">
+    <ul class="pagination pagination-danger">
+        {% if page.has_previous %}
+            <li><a href="{% url 'app:get_one_xingshi' xingshi.id %}?page={{ page.previous_page_number }}">上一页</a></li>
+        {% endif %}
+        {% for i in page.paginator.page_range %}
+            <li><a style='font-size:20px;' href="{% url 'app:get_one_xingshi' xingshi.id %}?page={{ i }}">{{ i }}</a></li>
+        {% endfor %}
+        {% if page.has_next %}
+            <li><a href="{% url  'app:get_one_xingshi' xingshi.id %}?page={{ page.next_page_number }}">下一页</a></li>
+        {% endif %}
+    </ul>
+</div>
+<div class="row sharing-area text-center">
+    <h4><a href="http://www.fizzyi.com">欢迎来我的博客或者Github</a></h4>
+    <a href="https://github.com/Fizzyi" class="btn">
+        <i class="fa fa-github-square"></i>
+        Github
+    </a>
+    <a href="http://www.fizzyi.com" class="btn">
+        <i class="fa fa-rss-square"></i>
+        Fizzyi
+    </a>
+</div>
+</body>
+<script src="/static/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/static/assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+<script src="/static/bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+
+<!--  Plugins -->
+<script src="/static/assets/js/ct-paper-checkbox.js"></script>
+<script src="/static/assets/js/ct-paper-radio.js"></script>
+<script src="/static/assets/js/bootstrap-select.js"></script>
+<script src="/static/assets/js/bootstrap-datepicker.js"></script>
+
+<script src="/static/assets/js/ct-paper.js"></script>
+<script>
+
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [75, 300],
+    });
+    $("#slider-default").slider({
+        value: 70,
+        orientation: "horizontal",
+        range: "min",
+        animate: true
+    });
+    $('.btn-tooltip').tooltip('show');
+    $('.radio').on('toggle', function () {
+    });
+
+</script>
+</html>
